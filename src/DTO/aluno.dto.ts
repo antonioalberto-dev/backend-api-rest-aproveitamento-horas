@@ -1,6 +1,7 @@
-import { ArrayMinSize, IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { ArrayMinSize, IsEmail, IsNotEmpty, IsNotEmptyObject, IsObject, IsString, MinLength } from "class-validator";
 import { Type } from "class-transformer";
 import { AtividadeDTO } from "./atividade.dto";
+import { Optional } from "@nestjs/common";
 
 export class AlunoDTO {
     @IsNotEmpty()
@@ -16,8 +17,8 @@ export class AlunoDTO {
     @MinLength(6)
     readonly senha: string;
 
-    @IsNotEmpty()
     @Type(() => AtividadeDTO)
+    @Optional()
     @ArrayMinSize(1)
     readonly atividades: AtividadeDTO[];
 }
