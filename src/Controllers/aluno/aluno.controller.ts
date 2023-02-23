@@ -25,13 +25,13 @@ export class AlunoController {
         return await this.alunoService.saveAluno(novoAluno);
     }
 
-    @Patch()
-    updateStudent(): string {
-        return 'Este aluno foi atualizado'
+    @Patch(':alunoID')
+    async updateStudent(@Param('alunoID') alunoID: string, @Body() novoAluno: AlunoDTO): Promise<Aluno>{
+        return await this.alunoService.updateAlunoByID(alunoID, novoAluno);
     }
 
-    @Delete()
-    deleteStudent(): string {
-        return 'Este aluno foi removido'
+    @Delete(':alunoID')
+    async deleteStudentById(@Param('alunoID') alunoID: string): Promise<Aluno>{
+        return await this.alunoService.deleteAlunoById(alunoID);
     }
 }

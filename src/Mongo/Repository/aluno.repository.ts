@@ -22,7 +22,15 @@ export class AlunoRepository {
         return await this.alunoModelo.find({}, { __v: false });
     }
 
-    async getStudentById(alunoID: string): Promise<Aluno>{
+    async getStudentById(alunoID: string): Promise<Aluno> {
         return await this.alunoModelo.findById(alunoID, { __v: false });
+    }
+
+    async deleteAlunoById(alunoID: string): Promise<Aluno> {
+        return this.alunoModelo.findOneAndDelete({ _id: alunoID });
+    }
+
+    async updadeAlunoByID(alunoID: string, novoAluno: AlunoDTO): Promise<Aluno> {
+        return await this.alunoModelo.findByIdAndUpdate({ _id: alunoID}, novoAluno)
     }
 }
