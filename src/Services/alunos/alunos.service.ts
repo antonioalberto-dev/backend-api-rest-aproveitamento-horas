@@ -50,6 +50,12 @@ export class AlunosService {
         if (!existAluno)
             throw new BadRequestException("There is no results with this ID");
 
-        return await this.alunoRepository.updadeAlunoByID(alunoID, novoAluno);
+        const updatedStudent = await this.alunoRepository.updadeAlunoByID(alunoID, novoAluno);
+
+        if(updatedStudent)
+        return this.alunoRepository.getStudentById(alunoID);
+        else
+        throw new BadRequestException("Error in update");
+        
     }
 }
