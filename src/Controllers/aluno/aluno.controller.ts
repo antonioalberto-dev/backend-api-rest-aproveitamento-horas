@@ -11,8 +11,8 @@ export class AlunoController {
     ) { }
 
     @Get()
-    getAllStudents() {
-        return 'Todos os alunos'
+    async getAllStudents() : Promise<AlunoDTO[]>{
+        return await this.alunoService.getAllStudents();
     }
 
     @Post()

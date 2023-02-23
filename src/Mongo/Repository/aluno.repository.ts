@@ -12,8 +12,13 @@ export class AlunoRepository {
         @InjectModel('aluno') private readonly alunoModelo: Model<Aluno>
     ) { }
 
+
     async saveAluno(novoAluno: AlunoDTO): Promise<Aluno> {
         const savedAluno = new this.alunoModelo(novoAluno);
         return savedAluno.save();
+    }
+
+    async getAllStudents(): Promise<AlunoDTO[]> {
+        return await this.alunoModelo.find({}, { __v: false });
     }
 }
