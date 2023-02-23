@@ -18,7 +18,11 @@ export class AlunoRepository {
         return savedAluno.save();
     }
 
-    async getAllStudents(): Promise<AlunoDTO[]> {
+    async getAllStudents(): Promise<Aluno[]> {
         return await this.alunoModelo.find({}, { __v: false });
+    }
+
+    async getStudentById(alunoID: string): Promise<Aluno>{
+        return await this.alunoModelo.findById(alunoID, { __v: false });
     }
 }

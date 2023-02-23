@@ -10,7 +10,7 @@ export class AlunosService {
         private readonly alunoRepository: AlunoRepository
     ) { }
 
-    async getAllStudents(): Promise<AlunoDTO[]> {
+    async getAllStudents(): Promise<Aluno[]> {
         const allStudents = await this.alunoRepository.getAllStudents();
 
         if(!allStudents.length)
@@ -21,5 +21,14 @@ export class AlunosService {
 
     async saveAluno(novoAluno: AlunoDTO): Promise<Aluno> {
         return await this.alunoRepository.saveAluno(novoAluno);
+    }
+
+    async getStudentById(alunoID: string): Promise<Aluno>{
+        try {
+            return await this.alunoRepository.getStudentById(alunoID);
+        } catch (error) {
+            throw new BadRequestException("There are no results");
+            
+        }
     }
 }

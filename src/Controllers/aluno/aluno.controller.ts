@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { AlunoDTO } from 'src/DTO/aluno.dto';
 import { Aluno } from 'src/Mongo/Interfaces/aluno.interface';
 import { AlunosService } from 'src/Services/alunos/alunos.service';
@@ -11,8 +11,13 @@ export class AlunoController {
     ) { }
 
     @Get()
-    async getAllStudents() : Promise<AlunoDTO[]>{
+    async getAllStudents() : Promise<Aluno[]>{
         return await this.alunoService.getAllStudents();
+    }
+
+    @Get(':alunoID')
+    async getStudentById(@Param('alunoID') alunoID: string): Promise<Aluno>{
+        return await this.alunoService.getStudentById(alunoID);
     }
 
     @Post()
