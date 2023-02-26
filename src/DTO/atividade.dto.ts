@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Optional } from "@nestjs/common";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Modalidade } from "src/Models/modalidade.enum";
 
 export class AtividadeDTO{
@@ -18,4 +19,7 @@ export class AtividadeDTO{
     
     @IsString()
     readonly descricao: string;
+    
+    @IsString()
+    readonly status: string;
 }

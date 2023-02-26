@@ -6,5 +6,6 @@ export const AtividadeSchema = new Schema({
     modalidade: String,
     tipo: String,
     horasAtividade: Number,
-    descricao: String
+    descricao: String,
+    status: String
 })
